@@ -59,5 +59,50 @@ WebAppを新規作成すると、次の画面で仕様を入力します。
 ![digtono 2023-04-21 at 11 05 52](https://user-images.githubusercontent.com/34669114/233523664-b76b4e96-91f7-466d-92f5-ceb592daadbb.png)
 ---  
 
+### WebApp に、AzureBotの資格情報を紐付ける  
+
+作成したWebAppを開き、さらに Configulationの画面から、環境変数を入力します。  
+
+---  
+![digtono 2023-04-21 at 11 07 54](https://user-images.githubusercontent.com/34669114/233524163-4fc2d6bb-b28e-462f-a63f-c796ded7cbfc.png)
+---  
+
+|  Name  |  Value  |
+| ---- | ---- |
+|  MicrosoftAppId  |  `Application (cliend) ID`  |
+|  MicrosoftAppPassword  |  `先ほど再作成したシークレット`  |
+|  MicrosoftAppTenantId  |    |
+|  MicrosoftAppType  |  `MultiTenant`  |
+
+今回はステージング環境は作らないので、Deployment Slot Settingは、OFFにします。  
+すべて入力し終わったら、Save ボタンを押して、保存してください。  
+
+### WebAppのURLを調べる
+
+![digtono 2023-04-21 at 11 17 19](https://user-images.githubusercontent.com/34669114/233525302-f72cd650-2ecb-479a-ac90-6c4cfc49affd.png)
+
+
+### AzureBotに、WebAppのエンドポイントを紐付ける
+
+AzureBotを開き、Configulationで Messaging Endpointを入力する。
+
+---  
+![digtono 2023-04-21 at 11 20 48](https://user-images.githubusercontent.com/34669114/233525925-a56646f6-234a-407a-aef0-48754f0723c5.png)  
+---   
+
+以上で、Azureの環境構築は完了しました。  
+
+## 配信  
+
+Gitクローンした資源から、Visual Studioを起動する。
+その後、プロジェクト名を右クリックして、Publish... を実行する。  
+
+---  
+![digtono 2023-04-21 at 11 31 33](https://user-images.githubusercontent.com/34669114/233526855-9bd54635-8663-4b3f-b8a4-280950420ea1.png)  
+---  
+
+
+
+
 
 
