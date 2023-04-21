@@ -101,6 +101,25 @@ Gitクローンした資源から、Visual Studioを起動する。
 ![digtono 2023-04-21 at 11 31 33](https://user-images.githubusercontent.com/34669114/233526855-9bd54635-8663-4b3f-b8a4-280950420ea1.png)  
 ---  
 
+ターゲットは Azure→Azure App Service（Windows） を選択  
+
+---  
+![digtono 2023-04-21 at 11 34 04](https://user-images.githubusercontent.com/34669114/233527027-0a3fc33d-cdff-4f6d-859e-2e124e2b234d.png)  
+![digtono 2023-04-21 at 11 35 21](https://user-images.githubusercontent.com/34669114/233527220-32b8cbbd-e3e0-45c6-81dd-15e87b079bca.png)  
+--- 
+
+先ほど作成した WebApp を選択して Nextを押し、続けて 配信設定を保存します。
+
+---  
+![digtono 2023-04-21 at 11 36 20](https://user-images.githubusercontent.com/34669114/233527461-1d706c47-f6dc-4caa-a1be-907b8fa9481f.png)
+![digtono 2023-04-21 at 11 38 10](https://user-images.githubusercontent.com/34669114/233527525-c9bd32e6-bfb9-4fae-8c2f-4c2adc68a6a6.png)
+---  
+
+この画面で、Publishボタンを押すと、ボットのバックエンドが Azureにデプロイされます。
+
+---
+![digtono 2023-04-21 at 11 39 53](https://user-images.githubusercontent.com/34669114/233527771-01a63b35-aa71-4515-9a82-5a846efc2cf4.png)  
+---
 
 
 
