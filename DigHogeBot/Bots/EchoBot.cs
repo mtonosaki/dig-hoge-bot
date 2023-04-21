@@ -13,10 +13,23 @@ namespace DigHogeBot.Bots {
     public class EchoBot: ActivityHandler {
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken) {
             if (turnContext.Activity.Text.ToLower() == "about") {
-                var info = $"name={turnContext.Activity.From.Name}, oid={turnContext.Activity.From.AadObjectId}, role={turnContext.Activity.From.Role}";
-                await turnContext.SendActivityAsync(MessageFactory.Text(info, info), cancellationToken);
-                var info2 = $"ChannelId={turnContext.Activity.ChannelId} Speak={turnContext.Activity.Speak}";
-                await turnContext.SendActivityAsync(MessageFactory.Text(info2, info2), cancellationToken);
+                var messages = new List<string>{
+                    $"From.Name={turnContext.Activity.From.Name}",
+                    $"From.Id={turnContext.Activity.From.Id}",
+                    $"From.AadObjectId={turnContext.Activity.From.AadObjectId}",
+                    $"From.Role={turnContext.Activity.From.Role}",
+                    $"Text={turnContext.Activity.Text}",
+                    $"Id={turnContext.Activity.Id}",
+                    $"Expiration={turnContext.Activity.Expiration?.ToString() ?? "null"}",
+                    $"ChannelId={turnContext.Activity.ChannelId}",
+                    $"Conversation.Name={turnContext.Activity.Conversation?.Name}",
+                    $"Conversation.Id={turnContext.Activity.Conversation?.Id}",
+                    $"Conversation.TenantId={turnContext.Activity.Conversation?.TenantId}",
+                    $"Conversation.AadObjectId={turnContext.Activity.Conversation?.AadObjectId}",
+                };
+                foreach(var message in messages) {
+                    await turnContext.SendActivityAsync(MessageFactory.Text(message, message), cancellationToken);
+                }
             } else {
                 var replyText = $"今、{turnContext.Activity.Text} って言いました？";
                 await turnContext.SendActivityAsync(MessageFactory.Text(replyText, replyText), cancellationToken);
