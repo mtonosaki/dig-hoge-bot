@@ -121,6 +121,11 @@ Gitクローンした資源から、Visual Studioを起動する。
 ![digtono 2023-04-21 at 11 39 53](https://user-images.githubusercontent.com/34669114/233527771-01a63b35-aa71-4515-9a82-5a846efc2cf4.png)  
 ---
 
+## 動作確認  
+
+AzureBotの画面でテストできます。
+
+![digtono 2023-04-21 at 11 43 27](https://user-images.githubusercontent.com/34669114/233528549-46032d84-835a-4fc3-ae11-c9717ea39d4b.png)
 
 
 
