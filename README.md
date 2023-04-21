@@ -2,7 +2,7 @@
 AzureBotのサンプルです。
 単にエコーを返すのと、about と話すと、Bot Frameworkが把握できている情報を返してくれます。
 
-## 開発準備
+## Azure環境準備
 ### Azure リソースグループの作成
 Azureポータルで、リソースグループを作成します。この例では digbot という名前にしています。  
 
@@ -39,5 +39,25 @@ AzureBotが自動的に作成したシークレットは確認できなくなっ
 `az ad app credential reset --id <Application (cliend) IDを入力>`  
 
 すると以下のように新しいシークレットが表示されますので、覚えておきます。（取り扱い注意のシークレットです）  
+
 ![digtono 2023-04-21 at 10 43 57](https://user-images.githubusercontent.com/34669114/233521320-63641c3d-04dd-48e0-8603-c41da0a56d77.png)  
+---
+
+### Webサーバーを作成する  
+Botのバックエンドを動作させるWebサーバーをAzureに建てます。  具体的には、 AppServicePlanと、AppServiceのリソース追加になります。  
+まず、最初に作成したリソースグループの中で、WebApp を新規作成します。  
+![digtono 2023-04-21 at 10 54 45](https://user-images.githubusercontent.com/34669114/233522493-24c7133b-cdba-477b-a025-4c5243804a70.png)  
+![digtono 2023-04-21 at 10 58 12](https://user-images.githubusercontent.com/34669114/233522729-9bc3ef52-d5b8-427c-81ec-6f2b184f83b5.png)  
+
+WebAppを新規作成すると、次の画面で仕様を入力します。    
+
+---  
+![digtono 2023-04-21 at 11 00 11](https://user-images.githubusercontent.com/34669114/233523177-fea62d68-a475-4097-99c6-e2bd5ffda7c6.png)
+![digtono 2023-04-21 at 11 02 22](https://user-images.githubusercontent.com/34669114/233523436-b32bc479-215f-41eb-9e3d-7678d1d7689d.png)
+![digtono 2023-04-21 at 11 04 43](https://user-images.githubusercontent.com/34669114/233523574-8e4ff3c9-ac3e-4140-8b96-0b962fad50a0.png)
+![digtono 2023-04-21 at 11 05 31](https://user-images.githubusercontent.com/34669114/233523633-9802941e-b355-4100-91b8-2bc294a179c1.png)
+![digtono 2023-04-21 at 11 05 52](https://user-images.githubusercontent.com/34669114/233523664-b76b4e96-91f7-466d-92f5-ceb592daadbb.png)
+---  
+
+
 
