@@ -22,33 +22,33 @@ namespace DigHogeBot {
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
-            services.AddHttpClient().AddControllers().AddNewtonsoftJson(options => {
+            _ = services.AddHttpClient().AddControllers().AddNewtonsoftJson(options => {
                 options.SerializerSettings.MaxDepth = HttpHelper.BotMessageSerializerSettings.MaxDepth;
             });
 
             // Create the Bot Framework Authentication to be used with the Bot Adapter.
-            services.AddSingleton<BotFrameworkAuthentication, ConfigurationBotFrameworkAuthentication>();
+            _ = services.AddSingleton<BotFrameworkAuthentication, ConfigurationBotFrameworkAuthentication>();
 
             // Create the Bot Adapter with error handling enabled.
-            services.AddSingleton<IBotFrameworkHttpAdapter, AdapterWithErrorHandler>();
+            _ = services.AddSingleton<IBotFrameworkHttpAdapter, AdapterWithErrorHandler>();
 
             // Create the bot as a transient. In this case the ASP Controller is expecting an IBot.
-            services.AddTransient<IBot, Bots.EchoBot>();
+            _ = services.AddTransient<IBot, Bots.EchoBot>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
             if (env.IsDevelopment()) {
-                app.UseDeveloperExceptionPage();
+                _ = app.UseDeveloperExceptionPage();
             }
 
-            app.UseDefaultFiles()
+            _ = app.UseDefaultFiles()
                 .UseStaticFiles()
                 .UseWebSockets()
                 .UseRouting()
                 .UseAuthorization()
                 .UseEndpoints(endpoints => {
-                    endpoints.MapControllers();
+                    _ = endpoints.MapControllers();
                 });
 
             // app.UseHttpsRedirection();

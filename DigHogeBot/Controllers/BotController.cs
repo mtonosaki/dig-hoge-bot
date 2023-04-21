@@ -3,12 +3,19 @@
 //
 // Generated with Bot Builder V4 SDK Template for Visual Studio EchoBot v4.18.1
 
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Integration.AspNet.Core;
 using System.Threading.Tasks;
 
 namespace DigHogeBot.Controllers {
+    public interface IWebAnalyzerBot {
+        HttpRequest Request { set; }
+        HttpResponse Response { set; }
+        HttpContext Context { set; }
+    }
+
     // This ASP Controller is created to handle a request. Dependency Injection will provide the Adapter and IBot
     // implementation at runtime. Multiple different IBot implementations running at different endpoints can be
     // achieved by specifying a more specific type for the bot constructor argument.
@@ -28,7 +35,13 @@ namespace DigHogeBot.Controllers {
         public async Task PostAsync() {
             // Delegate the processing of the HTTP POST to the adapter.
             // The adapter will invoke the bot.
+            if (_bot is IWebAnalyzerBot webbot) {
+                webbot.Request = Request;
+                webbot.Response = Response;
+                webbot.Context = HttpContext;
+            }
             await _adapter.ProcessAsync(Request, Response, _bot);
         }
     }
 }
+
