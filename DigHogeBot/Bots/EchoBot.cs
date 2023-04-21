@@ -12,8 +12,15 @@ using System.Threading.Tasks;
 namespace DigHogeBot.Bots {
     public class EchoBot: ActivityHandler {
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken) {
-            var replyText = $"今、{turnContext.Activity.Text} って言いました？";
-            await turnContext.SendActivityAsync(MessageFactory.Text(replyText, replyText), cancellationToken);
+            if (turnContext.Activity.Text.ToLower() == "about") {
+                var info = $"name={turnContext.Activity.From.Name}, oid={turnContext.Activity.From.AadObjectId}, role={turnContext.Activity.From.Role}";
+                await turnContext.SendActivityAsync(MessageFactory.Text(info, info), cancellationToken);
+                var info2 = $"ChannelId={turnContext.Activity.ChannelId} Speak={turnContext.Activity.Speak}";
+                await turnContext.SendActivityAsync(MessageFactory.Text(info2, info2), cancellationToken);
+            } else {
+                var replyText = $"今、{turnContext.Activity.Text} って言いました？";
+                await turnContext.SendActivityAsync(MessageFactory.Text(replyText, replyText), cancellationToken);
+            }
         }
 
         protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken) {
