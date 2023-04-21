@@ -6,6 +6,7 @@
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Schema;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -32,7 +33,7 @@ namespace DigHogeBot.Bots {
                     $"Conversation.TenantId={turnContext.Activity.Conversation?.TenantId}",
                     $"Conversation.AadObjectId={turnContext.Activity.Conversation?.AadObjectId}",
                 };
-                foreach(var message in messages) {
+                foreach(var message in messages.Where(_ => !cancellationToken.IsCancellationRequested)) {
                     await turnContext.SendActivityAsync(MessageFactory.Text(message, message), cancellationToken);
                 }
             } else {
