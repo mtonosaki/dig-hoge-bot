@@ -14,14 +14,19 @@ namespace DigHogeBot.Bots {
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken) {
             if (turnContext.Activity.Text.ToLower() == "about") {
                 var messages = new List<string>{
+                    $"Text={turnContext.Activity.Text}",
+                    $"Id={turnContext.Activity.Id}",
+                    $"ChannelId={turnContext.Activity.ChannelId}",
+                    $"DeliveryMode={turnContext.Activity.DeliveryMode}",
+                    $"Expiration={turnContext.Activity.Expiration?.ToString() ?? "null"}",
+                    $"Locale={turnContext.Activity.Locale}",
+                    $"LocalTimestamp={turnContext.Activity.LocalTimestamp?.ToString()}",
+                    $"ReplyToId={turnContext.Activity.ReplyToId}",
+                    $"Summary={turnContext.Activity.Summary}",
                     $"From.Name={turnContext.Activity.From.Name}",
                     $"From.Id={turnContext.Activity.From.Id}",
                     $"From.AadObjectId={turnContext.Activity.From.AadObjectId}",
                     $"From.Role={turnContext.Activity.From.Role}",
-                    $"Text={turnContext.Activity.Text}",
-                    $"Id={turnContext.Activity.Id}",
-                    $"Expiration={turnContext.Activity.Expiration?.ToString() ?? "null"}",
-                    $"ChannelId={turnContext.Activity.ChannelId}",
                     $"Conversation.Name={turnContext.Activity.Conversation?.Name}",
                     $"Conversation.Id={turnContext.Activity.Conversation?.Id}",
                     $"Conversation.TenantId={turnContext.Activity.Conversation?.TenantId}",
