@@ -111,7 +111,7 @@ Gitクローンした資源から、Visual Studioを起動する。
 先ほど作成した WebApp を選択して Nextを押し、続けて 配信設定を保存します。
 
 ---  
-![digtono 2023-04-21 at 11 36 20](https://user-images.githubusercontent.com/34669114/233527461-1d706c47-f6dc-4caa-a1be-907b8fa9481f.png)
+![image](https://user-images.githubusercontent.com/34669114/234793433-b78e0bc7-c70b-450f-ade4-af7076d3c921.png)
 ![digtono 2023-04-21 at 11 38 10](https://user-images.githubusercontent.com/34669114/233527525-c9bd32e6-bfb9-4fae-8c2f-4c2adc68a6a6.png)
 ---  
 
