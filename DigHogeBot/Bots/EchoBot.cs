@@ -7,6 +7,7 @@ using DigHogeBot.Controllers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Schema;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -130,8 +131,8 @@ namespace DigHogeBot.Bots {
                 "controller" => "Controllerって、ほら、あれですよ。MVCのController。ググってみて。",
                 "http" => "Controllerで取得できる HttpContext オブジェクトです。",
                 "httpcontext" => "Controllerで取得できる HttpContext オブジェクトです。",
-                "req" => "HttpContext の Request オブジェクトです。",
-                "res" => "HttpContext の Response オブジェクトです。",
+                "req" => "Controllerで取得できる HttpContext の Request オブジェクトです。",
+                "res" => "Controllerで取得できる HttpContext の Response オブジェクトです。",
                 "context" => "Botの Turn Context です。",
                 "act" => "Botの Turn Context内にある Activity オブジェクトです。",
                 "about" => "BotのContextオブジェクトから色々ピックアップします。",
@@ -243,6 +244,14 @@ namespace DigHogeBot.Bots {
         }
 
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken) {
+            var tenantIds = Startup.ConfigCurrent.GetValue<string>("AcceptTenandIds");
+            if (!string.IsNullOrEmpty(tenantIds)) {
+                var ids = tenantIds.Split(',').Select(x => x.Trim());
+                if(!ids.Contains(turnContext.Activity.Conversation.TenantId)) {
+                    return;
+                }
+            }
+
             var co = turnContext.Activity.Text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
             if (await Guard(co, turnContext, cancellationToken)) {
                 return;
@@ -287,7 +296,7 @@ namespace DigHogeBot.Bots {
         }
 
         protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken) {
-            var welcomeText = "こんにちは。DIG Hogeボットです！";
+            var welcomeText = "こんにちは。DIG Hogeボットです！ help と入力したら説明させていただきますね";
             foreach (var member in membersAdded) {
                 if (member.Id != turnContext.Activity.Recipient.Id) {
                     _ = await turnContext.SendActivityAsync(MessageFactory.Text(welcomeText, welcomeText), cancellationToken);
